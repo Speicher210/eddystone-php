@@ -1,0 +1,14 @@
+language: php
+
+php:
+  - 7.1
+
+sudo: false
+
+before_script:
+  - travis_retry composer self-update
+  - travis_retry composer update --no-interaction
+
+script:
+  - vendor/bin/phpcs --standard=psr2 src/
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
