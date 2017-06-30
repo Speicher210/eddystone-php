@@ -68,7 +68,7 @@ final class EddystoneUrl
         return $this->httpUrl;
     }
 
-    public static function fromEncodedUrl(string $encodedUrl): EddystoneUrl
+    public static function fromEncodedUrl(string $encodedUrl): self
     {
         $httpUrl = self::decodeEddystoneUrl($encodedUrl);
 
@@ -78,7 +78,7 @@ final class EddystoneUrl
         return $eddystoneUrl;
     }
 
-    public static function fromHttpUrl(string $httpUrl): EddystoneUrl
+    public static function fromHttpUrl(string $httpUrl): self
     {
         $encodedPrefix = '';
         $encodedUrl = '';
@@ -108,10 +108,10 @@ final class EddystoneUrl
             throw InvalidHttpUrlException::reason('it is to long.');
         }
 
-        $httpUrl = new static(\bin2hex($encodedPrefix . $encodedUrl));
-        $httpUrl->httpUrl = $httpUrl;
+        $eddystoneUrl = new self(\bin2hex($encodedPrefix . $encodedUrl));
+        $eddystoneUrl->httpUrl = $httpUrl;
 
-        return $httpUrl;
+        return $eddystoneUrl;
     }
 
     private static function decodeEddystoneUrl(string $encodedUrl): string
