@@ -120,6 +120,14 @@ final class EddystoneUrl
             throw InvalidEncodedUrlException::reason('it is to short.');
         }
 
+        if (\strlen($encodedUrl) % 2 !== 0) {
+            throw InvalidEncodedUrlException::reason('it does not have an even length.');
+        }
+
+        if (!\ctype_xdigit($encodedUrl)) {
+            throw InvalidEncodedUrlException::reason('it is not correct hexadecimal string.');
+        }
+
         $url = \hex2bin($encodedUrl);
 
         // First 2 characters represent a prefix.

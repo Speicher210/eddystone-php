@@ -39,7 +39,9 @@ class EddystoneUrlTest extends TestCase
         return [
             ['', 'Invalid eddystone encoded url because it is to short.'],
             ['1', 'Invalid eddystone encoded url because it is to short.'],
-            ['04', 'Invalid eddystone encoded url because the prefix is not supported.']
+            ['04', 'Invalid eddystone encoded url because the prefix is not supported.'],
+            ['123', 'Invalid eddystone encoded url because it does not have an even length.'],
+            ['no-hex', 'Invalid eddystone encoded url because it is not correct hexadecimal string.']
         ];
     }
 
